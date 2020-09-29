@@ -49,13 +49,13 @@ _ajax.interceptors.request.use(
 
 ### 传值给响应拦截器
 
-你也可以传参到响应拦截器，赋值`request`中的`response`，则在响应拦截器中会收到`response`
+你也可以传参到响应拦截器，对`request.response`赋值，则在响应拦截器中会收到`response`
 
 ```JavaScript
 // 请求拦截器
 _ajax.interceptors.request.use(
   request => {
-    request.response.hello = 'hello ajax;
+    request.response.hello = 'hello ajax';
     return request;
   }
 );

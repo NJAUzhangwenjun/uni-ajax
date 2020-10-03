@@ -42,8 +42,8 @@ ajax.origin     // 根据配置的接口根地址获取源地址 origin
 | success         | function        | 收到开发者服务器成功返回的回调函数                                         |
 | fail            | function        | 接口调用失败的回调函数                                                     |
 | complete        | function        | 接口调用结束的回调函数（调用成功、失败都会执行）                           |
-| response        | object          | 响应拦截器可以接收到的参数                                                 |
-| ...             | any             | 传递给请求拦截器的参数                                                     |
+| response        | object          | 响应拦截器可以接收到的值                                                   |
+| ...             | any             | 传递给请求拦截器的值                                                       |
 
 `url` \<string\> 请求地址  
 `data` \<object|string\> 请求参数  
@@ -58,12 +58,13 @@ ajax.origin     // 根据配置的接口根地址获取源地址 origin
 | responseType    | string  | 设置响应的数据类型。合法值：text、arraybuffer                                   |
 | sslVerify       | boolean | 验证 ssl 证书                                                                   |
 | withCredentials | boolean | 跨域请求时是否携带凭证（cookies）                                               |
-| response        | object  | 响应拦截器可以接收到的参数                                                      |
-| ...             | any     | 传递给请求拦截器的参数                                                          |
+| response        | object  | 响应拦截器可以接收到的值                                                        |
+| ...             | any     | 传递给请求拦截器的值                                                            |
 
 ## 中断请求
 
-通过返回的`requestTask`对象，可中断请求任务。上面说的当需要返回`requestTask`对象时，传参是`params`一个对象，然后返回`Promise`的`resolve`。为什么是返回的`Promise`呢？因为[拦截器](/interceptor.html)是支持`async`。
+通过返回的`requestTask`对象，可中断请求任务。上面说的当需要返回`requestTask`对象时，传参是`params`一个对象，然后返回`Promise`的`resolve`为`requestTask`对象。
+为什么是返回的`Promise`而不是直接返回`requestTask`对象呢？因为[拦截器](/interceptor.html)是支持`async`。
 
 | 参数               | 说明                                                                       |
 | :----------------- | :------------------------------------------------------------------------- |

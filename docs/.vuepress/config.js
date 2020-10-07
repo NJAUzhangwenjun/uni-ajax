@@ -26,11 +26,6 @@ module.exports = {
 				title: '实例',
 				collapsable: false,
 				children: ['config', 'instance', 'interceptor']
-			},
-			{
-				title: 'beta',
-				collapsable: false,
-				children: ['beta']
 			}
 		]
 	}

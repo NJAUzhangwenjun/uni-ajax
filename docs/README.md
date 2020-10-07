@@ -10,10 +10,16 @@
 - 加入请求拦截器、响应拦截器
 - 可以配置接口根地址、默认参数
 - 支持 method 方法请求
-- 支持 task 操作
+- 支持 RequestTask 操作
 
 ## 链接
 
 [插件市场](https://ext.dcloud.net.cn/plugin?id=2351)<br />
 [Github](https://github.com/ponjs/uni-ajax)<br />
 [npm](https://www.npmjs.com/package/uni-ajax)
+
+## 备注
+
+**当前版本 `2.1.0`**
+
+如果您在实际项目中使用上跟当前文档的不一致，请更新至最新版本！

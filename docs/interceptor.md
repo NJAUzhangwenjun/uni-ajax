@@ -8,9 +8,9 @@
 ```JavaScript
 // 添加请求拦截器
 _ajax.interceptors.request.use(
-  request => {
+  config => {
     // 在发送请求之前做些什么
-    return request;
+    return config;
   },
   error => {
     // 对请求错误做些什么
@@ -23,48 +23,26 @@ _ajax.interceptors.request.use(
 
 ```JavaScript
 _ajax.interceptors.request.use(
-  request => {
+  config => {
     const token = uni.getStorageSync('token');
-    if (token) request.header.authorization = token;
-    return request;
+    if (token) config.header.authorization = token;
+    return config;
   }
 );
 ```
 
 ### 请求拦截中断请求
 
-如果你想在请求拦截器中中断请求，则只需要`return false`即可。中断请求后会在请求错误拦截里返回错误信息
+如果你想在请求拦截器中中断请求，则只需要`return false`即可。中断请求后会触发请求错误，并请求错误拦截里返回错误信息
 
 ```JavaScript
 _ajax.interceptors.request.use(
-  request => {
+  config => {
     return false;    // 中断请求
   },
   error => {
-    console.log(error.errMsg);
+    console.log(error.errMsg);    // request:fail interrupted
     return error;
-  }
-);
-```
-
-### 传值给响应拦截器
-
-你也可以传参到响应拦截器，对`request.response`赋值，则在响应拦截器中会收到`response`
-
-```JavaScript
-// 请求拦截器
-_ajax.interceptors.request.use(
-  request => {
-    request.response.hello = 'hello ajax';
-    return request;
-  }
-);
-
-// 响应拦截器
-_ajax.interceptors.response.use(
-  response => {
-    console.log(response.response.hello);    // 'hello ajax'
-    return request;
   }
 );
 ```
@@ -129,4 +107,34 @@ ajax()
   .catch(err => {
     // 请求错误或请求成功且code值为0
   });
+```
+
+### 传值给拦截器
+
+你也可以[传值](/usage.html#参数)到拦截器，在拦截器中通过`config`接收，又或者请求拦截器传值到响应拦截器
+
+```JavaScript
+// 请求
+ajax({
+  url: 'https://www.example.com',
+  hello: 'hello ajax'
+});
+
+// 请求拦截器
+_ajax.interceptors.request.use(
+  config => {
+    console.log(config.hello);       // 'hello ajax' 请求时传递给拦截器的值
+    config.world = 'hello world';    // 请求拦截器传值到响应拦截器
+    return config;
+  }
+);
+
+// 响应拦截器
+_ajax.interceptors.response.use(
+  response => {
+    console.log(response.config.hello);    // 'hello ajax'  请求时传递给拦截器的值
+    console.log(response.config.world);    // 'hello world' 请求拦截器传到响应拦截器的值
+    return request;
+  }
+);
 ```

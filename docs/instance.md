@@ -33,7 +33,7 @@ export default _ajax;
 
 这里的 `header` 可以为不同请求方式加对应的请求头，注意 `header` 里的请求方式要小写
 
-> 例如这里只给 POST 加上 Content-Type
+> 例如这里在默认配置中只给 POST 加上 Content-Type
 
 ```JavaScript
 header: {
@@ -45,4 +45,4 @@ header: {
 
 ### method
 
-当请求方法为`ajax()`时，若没传入指定的`method`，这里的请求方式为配置的 `method` 或 `GET`
+当请求方法为`ajax()`时，若没传入指定的`method`，这里的请求方式为配置的 `method` 或 `GET`，并且大小写不受限

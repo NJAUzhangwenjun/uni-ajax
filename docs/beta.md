@@ -8,9 +8,9 @@ npm i uni-ajax@2.0.3-beta
 
 ## 介绍
 
-- 简化 10% 代码
 - 参数 method 大小写不受限
-- 修改 task 返回方式，操作 task 更方便
+- 修改 requestTask 返回方式
+- 可直接调用 requestTask 方法
 - 调整传值给响应拦截器方式
 - 调整请求执行返回值
 

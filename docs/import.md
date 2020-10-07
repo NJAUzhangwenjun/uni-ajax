@@ -15,9 +15,9 @@ const _ajax = ajax.create({
 });
 
 _ajax.interceptors.request.use(
-  request => {
+  config => {
     // 在发送请求之前做些什么
-    return request;
+    return config;
   },
   error => {
     // 对请求错误做些什么

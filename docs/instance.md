@@ -96,7 +96,6 @@ const _ajax = ajax.create({
   }
 });
 
-
 // 请求拦截器
 _ajax.interceptors.request.use(
   config => {

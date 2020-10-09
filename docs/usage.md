@@ -53,6 +53,8 @@ const request = ajax();
 这里`request`接收的是封装后的`Promise`，并支持`RequestTask`的一些方法。<br />
 但实际并非真正的`RequestTask`对象。只是封装继承`Promise`并挂载`RequestTask`的同名方法。
 
+---
+
 如果希望返回一个`RequestTask`对象，则传参为`config`一个对象，且`config`至少传入`success / fail / complete`参数中的一个，然后接收`Promise.resolve`的返回值。
 
 ```JavaScript
@@ -103,7 +105,7 @@ const requestTask = await ajax({
 
 ## RequestTask
 
-| 参数               | 说                                                                              |
+| 参数               | 说明                                                                            |
 | :----------------- | :------------------------------------------------------------------------------ |
 | abort              | 中断请求任务                                                                    |
 | onHeadersReceived  | 监听 HTTP Response Header 事件。会比请求完成事件更早，仅[微信小程序平台][2]支持 |
@@ -112,7 +114,7 @@ const requestTask = await ajax({
 你可以直接在返回的`request`上使用`RequestTask`上的方法
 
 ```JavaScript
-// request 为 Promise 对象的基础上挂载 RequestTask 的方法
+// request 为 Promise 对象的基础上挂载 RequestTask 的方法，并非真正的 RequestTask 对象
 const request = ajax('https://www.example.com');
 // 中断请求任务
 request.abort();
@@ -121,7 +123,7 @@ request.abort();
 也可以获取`RequestTask`对象后再使用对应的方法
 
 ```JavaScript
-// 获取 RequestTask 对象
+// 获取 RequestTask 对象，这里获取的才是真正的 RequestTask 对象
 const requestTask = await ajax({
   url: 'https://www.example.com',
   complete: () => {}

@@ -33,9 +33,10 @@ _ajax.interceptors.request.use(
 
 ### 请求拦截中断请求
 
-如果你想在请求拦截器中中断请求，则只需要`return false`即可。中断请求后会触发请求错误，并请求错误拦截里返回错误信息
+如果你想在请求拦截器中中断请求，则只需要`return false`即可。中断请求后会触发请求错误事件，即会触发`请求错误拦截器`和`fail / catch`。
 
 ```JavaScript
+// 请求拦截器
 _ajax.interceptors.request.use(
   config => {
     return false;    // 中断请求
@@ -45,11 +46,16 @@ _ajax.interceptors.request.use(
     return error;
   }
 );
+
+// 发起请求
+ajax().catch(err => {
+  console.log(err.errMsg);    // request:fail interrupted
+});
 ```
 
 ## 响应拦截器
 
-当服务器返回的 HTTP 状态码为 200 时会到响应成功方法里，否则到响应错误
+当服务器返回的 HTTP 状态码为 200 时会到响应成功方法里，否则到响应错误。
 
 ```JavaScript
 // 添加响应拦截器
@@ -83,7 +89,7 @@ _ajax.interceptors.response.use(
 
 ### 响应成功方法 rejected
 
-如果你在响应成功方法里返回`Promise.reject`，请求接口时则会执行`fail`或`catch`
+如果你在响应成功方法里返回`Promise.reject`，请求接口时则会执行`fail`或`catch`。
 
 > 例如在上面例子的基础上，我想 code 值为 0 时执行 fail 或 catch
 
@@ -105,19 +111,19 @@ ajax()
     // 请求成功且code值不为0
   })
   .catch(err => {
-    // 请求错误或请求成功且code值为0
+    // 请求错误 或 请求成功且code值为0
   });
 ```
 
 ### 传值给拦截器
 
-你也可以[传值](/usage.html#参数)到拦截器，在拦截器中通过`config`接收，又或者请求拦截器传值到响应拦截器
+你也可以[传值](/usage.html#参数)到拦截器，在拦截器中通过`config`接收，又或者请求拦截器传值到响应拦截器。
 
 ```JavaScript
-// 请求
+// 发起请求
 ajax({
   url: 'https://www.example.com',
-  hello: 'hello ajax'
+  hello: 'hello ajax'    // 传递给拦截器的值
 });
 
 // 请求拦截器

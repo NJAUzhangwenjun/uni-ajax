@@ -38,3 +38,5 @@ _ajax.interceptors.response.use(
 
 export default _ajax;
 ```
+
+如何配置请求实例，见[实例配置](/instance.html#实例配置)和[拦截器](/interceptor.html)。

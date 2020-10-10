@@ -15,13 +15,6 @@ ajax.put();
 ajax.delete();
 ```
 
-**其他属性**
-
-```JavaScript
-ajax.baseURL    // 获取配置的接口根地址 baseURL
-ajax.origin     // 根据配置的接口根地址获取源地址 origin
-```
-
 **RequestTask 方法**
 
 ```JavaScript
@@ -32,9 +25,16 @@ request.onHeadersReceived(fn);     // 监听 HTTP Response Header 事件
 request.offHeadersReceived(fn);    // 取消监听 HTTP Response Header 事件
 ```
 
+**其他属性**
+
+```JavaScript
+ajax.baseURL    // 获取配置的接口根地址 baseURL
+ajax.origin     // 根据配置的接口根地址获取源地址 origin
+```
+
 ## 参数
 
-上面的请求方法中，传参方式有`config`或`url[, data[, config]]`，直接返回都是封装后的[Promise 对象][1]，并支持[RequestTask 方法](/usage.html#requesttask)
+上面的请求方法中，传参方式有`config`或`url[, data[, config]]`，直接返回都是封装后的[Promise 对象][1]，并支持[RequestTask 方法](/usage.html#requesttask)。
 
 - [config](/usage.html#config)
   - `resolve` &nbsp;响应成功对象 / RequestTask 对象
@@ -111,7 +111,7 @@ const requestTask = await ajax({
 | onHeadersReceived  | 监听 HTTP Response Header 事件。会比请求完成事件更早，仅[微信小程序平台][2]支持 |
 | offHeadersReceived | 取消监听 HTTP Response Header 事件，仅[微信小程序平台][3]支持                   |
 
-你可以直接在返回的`request`上使用`RequestTask`上的方法
+你可以直接在返回的`request`上使用`RequestTask`上的方法。
 
 ```JavaScript
 // request 为 Promise 对象的基础上挂载 RequestTask 的方法，并非真正的 RequestTask 对象
@@ -120,7 +120,7 @@ const request = ajax('https://www.example.com');
 request.abort();
 ```
 
-也可以获取`RequestTask`对象后再使用对应的方法
+也可以获取`RequestTask`对象后再使用对应的方法。
 
 ```JavaScript
 // 获取 RequestTask 对象，这里获取的才是真正的 RequestTask 对象

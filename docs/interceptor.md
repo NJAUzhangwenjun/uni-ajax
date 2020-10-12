@@ -11,13 +11,13 @@
 _ajax.interceptors.request.use(
   config => {
     // 在发送请求之前做些什么
-    return config;
+    return config
   },
   error => {
     // 对请求错误做些什么
-    return error;
+    return error
   }
-);
+)
 ```
 
 > 例如判断是否有 Token 有的话请求头加入 Token
@@ -25,11 +25,13 @@ _ajax.interceptors.request.use(
 ```JavaScript
 _ajax.interceptors.request.use(
   config => {
-    const token = uni.getStorageSync('token');
-    if (token) config.header.authorization = token;
-    return config;
+    const token = uni.getStorageSync('token')
+    if (token) {
+      config.header.authorization = token
+    }
+    return config
   }
-);
+)
 ```
 
 ### 请求拦截中断请求
@@ -40,18 +42,18 @@ _ajax.interceptors.request.use(
 // 请求拦截器
 _ajax.interceptors.request.use(
   config => {
-    return false;    // 中断请求
+    return false    // 中断请求
   },
   error => {
-    console.log(error.errMsg);    // request:fail interrupted
-    return error;
+    console.log(error.errMsg)    // request:fail interrupted
+    return error
   }
-);
+)
 
 // 发起请求
 ajax().catch(err => {
-  console.log(err.errMsg);    // request:fail interrupted
-});
+  console.log(err.errMsg)    // request:fail interrupted
+})
 ```
 
 ## 响应拦截器
@@ -63,13 +65,13 @@ ajax().catch(err => {
 _ajax.interceptors.response.use(
   response => {
     // 对响应数据做点什么
-    return response;
+    return response
   },
   error => {
     // 对响应错误做点什么
-    return error;
+    return error
   }
-);
+)
 ```
 
 > 例如当接口返回的 code 值为 0 时 toast 提示返回的 msg 信息
@@ -81,11 +83,11 @@ _ajax.interceptors.response.use(
       uni.showToast({
         title: response.data.msg,
         icon: 'none'
-      });
+      })
     }
-    return response;
+    return response
   }
-);
+)
 ```
 
 ### 响应成功`rejected`
@@ -100,11 +102,11 @@ _ajax.interceptors.response.use(
   response => {
     if (response.data.code === 0) {
       // ...
-      return Promise.reject(response);
+      return Promise.reject(response)
     }
-    return response;
+    return response
   }
-);
+)
 
 // 请求
 ajax()
@@ -113,7 +115,7 @@ ajax()
   })
   .catch(err => {
     // 请求错误 或 请求成功且code值为0
-  });
+  })
 ```
 
 ### 传值给拦截器
@@ -125,23 +127,23 @@ ajax()
 ajax({
   url: 'https://www.example.com',
   hello: 'hello ajax'    // 传递给拦截器的值
-});
+})
 
 // 请求拦截器
 _ajax.interceptors.request.use(
   config => {
-    console.log(config.hello);       // 'hello ajax' 请求时传递给拦截器的值
-    config.world = 'hello world';    // 请求拦截器传值到响应拦截器
-    return config;
+    console.log(config.hello)       // 'hello ajax' 请求时传递给拦截器的值
+    config.world = 'hello world'    // 请求拦截器传值到响应拦截器
+    return config
   }
-);
+)
 
 // 响应拦截器
 _ajax.interceptors.response.use(
   response => {
-    console.log(response.config.hello);    // 'hello ajax'  请求时传递给拦截器的值
-    console.log(response.config.world);    // 'hello world' 请求拦截器传到响应拦截器的值
-    return request;
+    console.log(response.config.hello)    // 'hello ajax'  请求时传递给拦截器的值
+    console.log(response.config.world)    // 'hello world' 请求拦截器传到响应拦截器的值
+    return request
   }
-);
+)
 ```

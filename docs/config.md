@@ -5,38 +5,38 @@
 `ajax.create([config])`
 
 ```JavaScript
-import ajax from 'uni-ajax';
+import ajax from 'uni-ajax'
 
-// 创建 UniAjax 实例
+// 创建请求实例
 const _ajax = ajax.create({
   // 默认配置
-});
+})
 
 // 添加请求拦截器
 _ajax.interceptors.request.use(
   config => {
     // 在发送请求之前做些什么
-    return config;
+    return config
   },
   error => {
     // 对请求错误做些什么
-    return error;
+    return error
   }
-);
+)
 
 // 添加响应拦截器
 _ajax.interceptors.response.use(
   response => {
     // 对响应数据做点什么
-    return response;
+    return response
   },
   error => {
     // 对响应错误做点什么
-    return error;
+    return error
   }
-);
+)
 
-export default _ajax;
+export default _ajax
 ```
 
 如何配置请求实例，见[实例配置](/instance.html#实例配置)和[拦截器](/interceptor.html)。

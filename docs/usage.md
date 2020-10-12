@@ -6,23 +6,23 @@
 
 ```JavaScript
 // 常规使用
-ajax();
+ajax()
 
 // 请求方式使用
-ajax.get();
-ajax.post();
-ajax.put();
-ajax.delete();
+ajax.get()
+ajax.post()
+ajax.put()
+ajax.delete()
 ```
 
 **RequestTask 方法**
 
 ```JavaScript
-const request = ajax();            // 常规使用或请求方式使用
+const request = ajax()            // 常规使用或请求方式使用
 
-request.abort();                   // 中断请求任务
-request.onHeadersReceived(fn);     // 监听 HTTP Response Header 事件
-request.offHeadersReceived(fn);    // 取消监听 HTTP Response Header 事件
+request.abort()                   // 中断请求任务
+request.onHeadersReceived(fn)     // 监听 HTTP Response Header 事件
+request.offHeadersReceived(fn)    // 取消监听 HTTP Response Header 事件
 ```
 
 **其他属性**
@@ -47,7 +47,7 @@ ajax.origin     // 根据配置的接口根地址获取源地址 origin
 ::: tip
 
 ```JavaScript
-const request = ajax();
+const request = ajax()
 ```
 
 这里`request`接收的是封装后的`Promise`，并支持`RequestTask`的一些方法。<br />
@@ -61,7 +61,7 @@ const request = ajax();
 const requestTask = await ajax({
   url: 'https://www.example.com',
   complete: () => {}
-});
+})
 ```
 
 :::
@@ -115,9 +115,9 @@ const requestTask = await ajax({
 
 ```JavaScript
 // request 为 Promise 对象的基础上挂载 RequestTask 的方法，并非真正的 RequestTask 对象
-const request = ajax('https://www.example.com');
+const request = ajax('https://www.example.com')
 // 中断请求任务
-request.abort();
+request.abort()
 ```
 
 也可以获取`RequestTask`对象后再使用对应的方法。
@@ -127,9 +127,9 @@ request.abort();
 const requestTask = await ajax({
   url: 'https://www.example.com',
   complete: () => {}
-});
+})
 // 中断请求任务
-requestTask.abort();
+requestTask.abort()
 ```
 
 [1]: https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/Promise

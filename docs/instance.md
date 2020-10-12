@@ -10,15 +10,15 @@
 
 ```JavaScript
 // 引入 uni-ajax 模块
-import ajax from 'uni-ajax';
+import ajax from 'uni-ajax'
 
 // 创建实例
 const _ajax = ajax.create({
   // 默认配置（配置参数如下）
-});
+})
 
 // 导出创建后的实例
-export default _ajax;
+export default _ajax
 ```
 
 ## 实例配置
@@ -46,7 +46,7 @@ const _ajax = ajax.create({
   header: {
     post: { 'Content-Type': 'application/x-www-form-urlencoded;charset=utf-8' }
   }
-});
+})
 ```
 
 ### `baseURL`
@@ -55,10 +55,10 @@ const _ajax = ajax.create({
 
 ```JavaScript
 // 创建实例
-const _ajax = ajax.create({ baseURL: 'https://www.example.com' });
+const _ajax = ajax.create({ baseURL: 'https://www.example.com' })
 
 // 发起请求，最终发起请求的 url 为 https://www.example.com/test
-_ajax('test');
+_ajax('test')
 ```
 
 ### `data`
@@ -69,10 +69,10 @@ _ajax('test');
 // 创建实例
 const _ajax = ajax.create({
   data: { hello: 'hello' }
-});
+})
 
 // 发起请求
-_ajax('https://www.example.com', { ajax: 'ajax' });
+_ajax('https://www.example.com', { ajax: 'ajax' })
 
 // 最终发起请求的 data
 // 如果发起请求时的字段是与默认配置的字段相同，则采用发起请求时的值
@@ -94,15 +94,15 @@ const _ajax = ajax.create({
   header: {
     post: { 'Content-Type': 'application/x-www-form-urlencoded;charset=utf-8' }
   }
-});
+})
 
 // 请求拦截器
 _ajax.interceptors.request.use(
   config => {
-    config.header.post['Content-Type'] = 'application/x-www-form-urlencoded;charset=utf-8';
-    return config;
+    config.header.post['Content-Type'] = 'application/x-www-form-urlencoded;charset=utf-8'
+    return config
   }
-);
+)
 ```
 
 关于`header`的优先级，在下面的例子中，`Priority`数值越大，表示优先级越高。
@@ -114,22 +114,22 @@ const _ajax = ajax.create({
     Priority: 1
     post: { Priority: 2 }
   }
-});
+})
 
 // 请求拦截器
 _ajax.interceptors.request.use(
   config => {
-    config.header.post['Priority'] = 3;
-    config.header['Priority'] = 5;
-    return config;
+    config.header.post['Priority'] = 3
+    config.header['Priority'] = 5
+    return config
   }
-);
+)
 
 // 发起请求
 _ajax({
   method: 'POST',
   header: { Priority: 4 }
-});
+})
 ```
 
 ### `method`
@@ -138,8 +138,8 @@ _ajax({
 
 ```JavaScript
 // 创建实例
-const _ajax = ajax.create({ method: 'post' });
+const _ajax = ajax.create({ method: 'post' })
 
 // 发起请求
-_ajax();    // 这里没有传入指定的 method，则以默认配置的 method，这里即 POST
+_ajax()    // 这里没有传入指定的 method，则以默认配置的 method，这里即 POST
 ```

@@ -81,6 +81,7 @@ const requestTask = await ajax({
 | responseType    | string          | 设置响应的数据类型。合法值：text、arraybuffer                              |
 | sslVerify       | boolean         | 验证 ssl 证书                                                              |
 | withCredentials | boolean         | 跨域请求时是否携带凭证（cookies）                                          |
+| firstIpv4       | boolean         | DNS 解析时优先使用 ipv4                                                    |
 | success         | function        | 收到开发者服务器成功返回的回调函数                                         |
 | fail            | function        | 接口调用失败的回调函数                                                     |
 | complete        | function        | 接口调用结束的回调函数（调用成功、失败都会执行）                           |
@@ -101,6 +102,7 @@ const requestTask = await ajax({
 | responseType    | string  | 设置响应的数据类型。合法值：text、arraybuffer                                   |
 | sslVerify       | boolean | 验证 ssl 证书                                                                   |
 | withCredentials | boolean | 跨域请求时是否携带凭证（cookies）                                               |
+| firstIpv4       | boolean | DNS 解析时优先使用 ipv4                                                         |
 | ...             | any     | 传递给拦截器的值                                                                |
 
 ## RequestTask

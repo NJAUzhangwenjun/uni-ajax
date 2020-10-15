@@ -25,18 +25,19 @@ export default _ajax
 
 `config`是一个对象，该对象的参数如下。
 
-| 参数            | 类型            | 说明                                                     |
-| :-------------- | :-------------- | :------------------------------------------------------- |
-| baseURL         | string          | 请求根地址                                               |
-| data            | object / string | 请求的参数，如果是 object 类型会合并在请求时的 data      |
-| header          | object          | 请求头，支持配置不同请求方式的请求头                     |
-| method          | string          | 默认的请求方式，当使用 ajax() 且未指定 method 时采用该值 |
-| timeout         | number          | 超时时间，单位 ms                                        |
-| dataType        | string          | 如果设为 json，会尝试对返回的数据做一次 JSON.parse       |
-| responseType    | string          | 设置响应的数据类型。合法值：text、arraybuffer            |
-| sslVerify       | boolean         | 验证 ssl 证书                                            |
-| withCredentials | boolean         | 跨域请求时是否携带凭证（cookies）                        |
-| ...             | any             | 传递给拦截器的值                                         |
+| 参数            | 类型            | 默认值 | 说明                                                     | 平台差异说明                                     |
+| :-------------- | :-------------- | :----- | :------------------------------------------------------- | :----------------------------------------------- |
+| baseURL         | string          |        | 请求根地址                                               |                                                  |
+| data            | object / string |        | 请求的参数，如果是 object 类型会合并在请求时的 data      | App（自定义组件编译模式）不支持 ArrayBuffer 类型 |
+| header          | object          |        | 请求头，支持配置不同请求方式的请求头                     | H5 端会自动带上 cookie 不可手动覆盖              |
+| method          | string          | GET    | 默认的请求方式，当使用 ajax() 且未指定 method 时采用该值 |
+| timeout         | number          | 30000  | 超时时间，单位 ms                                        | 微信小程序（2.10.0）、支付宝小程序               |
+| dataType        | string          | json   | 如果设为 json，会尝试对返回的数据做一次 JSON.parse       |
+| responseType    | string          | text   | 设置响应的数据类型。合法值：text、arraybuffer            | App 和支付宝小程序不支持                         |
+| sslVerify       | boolean         | true   | 验证 ssl 证书                                            | 仅 App 安卓端支持（HBuilderX 2.3.3+）            |
+| withCredentials | boolean         | false  | 跨域请求时是否携带凭证（cookies）                        | 仅 H5 支持（HBuilderX 2.6.15+）                  |
+| firstIpv4       | boolean         | false  | DNS 解析时优先使用 ipv4                                  | 仅 App-Android 支持 (HBuilderX 2.8.0+)           |
+| ...             | any             |        | 传递给拦截器的值                                         |                                                  |
 
 ```JavaScript
 // 创建实例
@@ -86,7 +87,7 @@ _ajax('https://www.example.com', { ajax: 'ajax' })
 
 这里的`header`可以为不同请求方式加对应的请求头，注意`header`里的请求方式属性要小写。
 
-> 例如这里只给 POST 加上 Content-Type
+> 例如这里只给 POST 加上 Content-Type，一般来说固定的请求头是放在默认配置中，如果是动态请求头（如 Token），放在请求拦截器中
 
 ```JavaScript
 // 创建实例
@@ -99,6 +100,7 @@ const _ajax = ajax.create({
 // 请求拦截器
 _ajax.interceptors.request.use(
   config => {
+    // 这里只是举例，但是这种固定的请求头建议放在创建实例的默认配置中
     config.header.post['Content-Type'] = 'application/x-www-form-urlencoded;charset=utf-8'
     return config
   }

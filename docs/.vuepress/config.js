@@ -1,11 +1,11 @@
 module.exports = {
-	title: 'UniAjax',
+	title: 'UNI AJAX',
 	themeConfig: {
 		displayAllHeaders: true,
 		nav: [
 			{ text: 'Document', link: '/' },
 			{
-				text: 'Plugin',
+				text: 'DCloud',
 				link: 'https://ext.dcloud.net.cn/plugin?id=2351',
 				target: '_blank'
 			},

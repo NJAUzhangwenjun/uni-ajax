@@ -14,7 +14,7 @@
 
 ## 链接
 
-[插件市场](https://ext.dcloud.net.cn/plugin?id=2351)<br />
+[DCloud](https://ext.dcloud.net.cn/plugin?id=2351)<br />
 [Github](https://github.com/ponjs/uni-ajax)<br />
 [npm](https://www.npmjs.com/package/uni-ajax)
 

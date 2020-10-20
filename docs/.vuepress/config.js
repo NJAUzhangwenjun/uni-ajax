@@ -26,6 +26,11 @@ module.exports = {
 				title: '实例',
 				collapsable: false,
 				children: ['config', 'instance', 'interceptor']
+			},
+			{
+				title: 'Q&A',
+				collapsable: false,
+				children: ['Q&A']
 			}
 		]
 	}
